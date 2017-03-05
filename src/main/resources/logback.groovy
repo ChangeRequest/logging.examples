@@ -1,6 +1,7 @@
 import ch.qos.logback.classic.boolex.JaninoEventEvaluator
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
 import ch.qos.logback.classic.html.HTMLLayout
+import ch.qos.logback.classic.turbo.MarkerFilter
 import ch.qos.logback.core.ConsoleAppender
 import ch.qos.logback.core.FileAppender
 import ch.qos.logback.core.encoder.LayoutWrappingEncoder
@@ -81,3 +82,9 @@ appender("TIME_BASED_FILE", RollingFileAppender) {
     }
 }
 logger("school.lemon.changerequest.java.logging._08TimeBasedRollingFileAppenderExample", INFO, ["TIME_BASED_FILE"])
+
+turboFilter(MarkerFilter) {
+    name = "CONFIDENTIAL_FILTER"
+    marker = "CONFIDENTIAL"
+    onMatch = FilterReply.DENY
+}
