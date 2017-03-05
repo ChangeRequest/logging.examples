@@ -1,0 +1,83 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="school.lemon.changerequest.java.logging._02WarnLevelExample" level="warn"/>
+    <logger name="school.lemon.changerequest.java.logging._03LoggingLevelInheritanceExample" level="debug"/>
+    <logger name="school.lemon.changerequest.java.logging._03LoggingLevelInheritanceExample$WarnLevelClass"
+            level="warn"/>
+    <logger name="school.lemon.changerequest.java.logging.subpackage" level="trace"/>
+    <logger name="school.lemon.changerequest.java.logging.subpackage._04SubPackageExample$WarnLevelClass" level="warn"/>
+
+    <appender name="HTML_FILE" class="ch.qos.logback.core.FileAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>%relative%thread%level%logger%msg</pattern>
+            </layout>
+        </encoder>
+        <file>logs/test.html</file>
+        <append>false</append>
+    </appender>
+    <logger name="school.lemon.changerequest.java.logging._05HtmlFileExample" additivity="false">
+        <appender-ref ref="HTML_FILE"/>
+    </logger>
+
+    <appender name="FILTERED_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator> <!-- defaults to type ch.qos.logback.classic.boolex.JaninoEventEvaluator -->
+                <expression>return message.contains("Filtered");</expression>
+            </evaluator>
+            <OnMismatch>NEUTRAL</OnMismatch>
+            <OnMatch>DENY</OnMatch>
+        </filter>
+    </appender>
+    <logger name="school.lemon.changerequest.java.logging._06FiltersExample" additivity="false">
+        <appender-ref ref="FILTERED_STDOUT"/>
+    </logger>
+
+    <appender name="SIZE_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/fixWindowBasedLogFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>logs/fixWindowBasedLogFile.log%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1KB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="school.lemon.changerequest.java.logging._07SizeBasedRollingFileAppenderExample">
+        <appender-ref ref="SIZE_BASED_FILE"/>
+    </logger>
+
+    <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/timeBasedlogFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--  seconds rollover based on smallest period in pattern-->
+            <fileNamePattern>logs/timeBasedlogFile.%d{yyyy-MM-dd-HH-mm-ss}.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="school.lemon.changerequest.java.logging._08TimeBasedRollingFileAppenderExample">
+        <appender-ref ref="TIME_BASED_FILE"/>
+    </logger>
+</configuration>

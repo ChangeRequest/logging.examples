@@ -1,9 +1,19 @@
 group 'school.lemon.changerequest.java'
 version '1.0-SNAPSHOT'
 
-
 apply from: 'https://raw.githubusercontent.com/ChangeRequest/gradle_common/master/commonModule.gradle'
 apply from: 'https://raw.githubusercontent.com/ChangeRequest/gradle_common/master/javaModule.gradle'
 apply from: 'https://raw.githubusercontent.com/ChangeRequest/gradle_common/master/testModule.gradle'
 apply from: 'https://raw.githubusercontent.com/ChangeRequest/gradle_common/master/idea.gradle'
 apply from: 'https://raw.githubusercontent.com/ChangeRequest/gradle_common/master/eclipse.gradle'
+
+dependencies {
+
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.24'
+
+    //uncomment for using slf4j-simple instead of logback
+    //compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.24'
+
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.1'
+    compile group: 'janino', name: 'janino', version: '2.5.10'// required for filters
+}
