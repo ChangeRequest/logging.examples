@@ -1,4 +1,6 @@
 <configuration>
+    <property name="LOG_PATH" value="logs"/>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
@@ -49,14 +51,14 @@
     </logger>
 
     <appender name="SIZE_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/fixWindowBasedLogFile.log</file>
+        <file>${LOG_PATH}/fixWindowBasedLogFile.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>logs/fixWindowBasedLogFile.log%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/fixWindowBasedLogFile.log%i.log</fileNamePattern>
             <minIndex>1</minIndex>
-            <maxIndex>5</maxIndex>
+            <maxIndex>3</maxIndex>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>1KB</maxFileSize>
+            <maxFileSize>100KB</maxFileSize>
         </triggeringPolicy>
         <encoder>
             <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
@@ -67,10 +69,10 @@
     </logger>
 
     <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/timeBasedlogFile.log</file>
+        <file>${LOG_PATH}/timeBasedlogFile.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--  seconds rollover based on smallest period in pattern-->
-            <fileNamePattern>logs/timeBasedlogFile.%d{yyyy-MM-dd-HH-mm-ss}.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/timeBasedlogFile.%d{yyyy-MM-dd-HH-mm-ss}.log</fileNamePattern>
             <maxHistory>3</maxHistory>
         </rollingPolicy>
         <encoder>
