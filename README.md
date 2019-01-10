@@ -1,4 +1,4 @@
 Logging Examples
 ================
 
-Just some examples for Java Logging topic
+Just some examples for Java Logging topic.

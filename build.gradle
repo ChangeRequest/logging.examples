@@ -9,11 +9,11 @@ apply from: 'https://raw.githubusercontent.com/ChangeRequest/gradle_common/maste
 
 dependencies {
 
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.24'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
     //uncomment for using slf4j-simple instead of logback
-    //compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.24'
+    //compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.1'
-    compile group: 'janino', name: 'janino', version: '2.5.10'// required for filters
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'org.codehaus.janino', name: 'janino', version: '3.0.11' // required for filters
 }
